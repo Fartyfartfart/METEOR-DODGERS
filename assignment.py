@@ -77,3 +77,36 @@ while True:
 
 
 pygame.quit()
+
+egg1 = 0
+egg2 = width
+speed = 1
+
+
+background = pygame.transform.scale(pygame.image.load("eee.jpg"),(1000, 800))
+background2= pygame.transform.scale(pygame.image.load("ee.jpg"),(1000, 800))
+
+
+run = True
+while run:
+    
+    event_list = pygame.event.get()
+    for event in event_list:
+        if event.type == pygame.QUIT:
+            quit()
+    
+    egg1 -= speed
+    egg2 -= speed
+
+    if egg1 <= -width:
+        egg1 = width
+    if egg2 <= -width:
+        egg2 = width
+
+    display.blit(background, (egg1, 0))
+    display.blit(background2, (egg2, 0))
+
+    
+    pygame.display.update()
+
+    pygame.display.flip ()
