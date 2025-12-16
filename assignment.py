@@ -49,10 +49,21 @@ pygame.init()
 
 # *********SETUP**********
 
-windowWidth = 500
+windowWidth = 600
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()  #will allow us to set framerate
+
+
+egg1 = 0
+egg2 = windowWidth
+speed = 2
+RocketX= 250
+RocketY= 250
+Player1ROCKETSPEED = 5
+
+background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
+background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
 
 # *********GAME LOOP**********
 while True:
@@ -64,6 +75,20 @@ while True:
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
+    key = pygame.key.get_pressed()
+    egg1 -= speed
+    egg2 -= speed
+
+    if egg1 <= -windowWidth:
+        egg1 = windowWidth
+    if egg2 <= -windowWidth:
+        egg2 = windowWidth
+
+    window.blit(background, (egg1, 0))
+    window.blit(background2, (egg2, 0))
+
+    RocketY += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * speed
+    RocketX += (key[pygame.K_DOWN] - key[pygame.K_UP]) * speed
    
     #PUT YOUR GAME LOGIN HERE FOR EACH GAMESTATE
    
@@ -78,35 +103,3 @@ while True:
 
 pygame.quit()
 
-egg1 = 0
-egg2 = width
-speed = 1
-
-
-background = pygame.transform.scale(pygame.image.load("eee.jpg"),(1000, 800))
-background2= pygame.transform.scale(pygame.image.load("ee.jpg"),(1000, 800))
-
-
-run = True
-while run:
-    
-    event_list = pygame.event.get()
-    for event in event_list:
-        if event.type == pygame.QUIT:
-            quit()
-    
-    egg1 -= speed
-    egg2 -= speed
-
-    if egg1 <= -width:
-        egg1 = width
-    if egg2 <= -width:
-        egg2 = width
-
-    display.blit(background, (egg1, 0))
-    display.blit(background2, (egg2, 0))
-
-    
-    pygame.display.update()
-
-    pygame.display.flip ()
