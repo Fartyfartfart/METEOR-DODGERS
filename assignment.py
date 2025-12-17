@@ -62,8 +62,11 @@ RocketX= 250
 RocketY= 250
 Player1ROCKETSPEED = 5
 
+RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (200, 200))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
+
+
 
 # *********GAME LOOP**********
 while True:
@@ -75,6 +78,9 @@ while True:
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
+    
+    
+
     key = pygame.key.get_pressed()
     egg1 -= speed
     egg2 -= speed
@@ -83,12 +89,14 @@ while True:
         egg1 = windowWidth
     if egg2 <= -windowWidth:
         egg2 = windowWidth
+    
+    RocketY += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
+    RocketX += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
 
     window.blit(background, (egg1, 0))
     window.blit(background2, (egg2, 0))
+    window.blit(RedRocket ,(RocketX, RocketY))
 
-    RocketY += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * speed
-    RocketX += (key[pygame.K_DOWN] - key[pygame.K_UP]) * speed
    
     #PUT YOUR GAME LOGIN HERE FOR EACH GAMESTATE
    
