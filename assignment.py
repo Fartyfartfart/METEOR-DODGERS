@@ -56,7 +56,7 @@ clock = pygame.time.Clock()  #will allow us to set framerate
 
 
 egg1 = 0
-egg2 = windowWidth
+egg2 = -windowHeight
 speed = 2
 RocketX= 250
 RocketY= 250
@@ -82,19 +82,19 @@ while True:
     
 
     key = pygame.key.get_pressed()
-    egg1 -= speed
-    egg2 -= speed
+    egg1 += speed
+    egg2 += speed
 
-    if egg1 <= -windowWidth:
-        egg1 = windowWidth
-    if egg2 <= -windowWidth:
-        egg2 = windowWidth
+    if egg1 >= windowHeight:
+        egg1 = -windowWidth
+    if egg2 >= windowHeight:
+        egg2 = -windowWidth
     
-    RocketY += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
-    RocketX += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
+    RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
+    RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
 
-    window.blit(background, (egg1, 0))
-    window.blit(background2, (egg2, 0))
+    window.blit(background, (0, egg1))
+    window.blit(background2, (0, egg2))
     window.blit(RedRocket ,(RocketX, RocketY))
 
    
