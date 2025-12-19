@@ -90,6 +90,7 @@ MeteorX7= random.randint(0, 600)
 MeteorY7= -470
 meteorspeed7 = random.randint(3,5)
 
+GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
 Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
