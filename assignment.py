@@ -67,7 +67,7 @@ MeteorY1= -10
 meteorspeed1 = random.randint(3,5)
 
 MeteorX2= random.randint(0, 600)
-MeteorY2= -50
+MeteorY2= -150
 meteorspeed2 = random.randint(3,5)
 
 MeteorX3= random.randint(0, 600)
@@ -79,8 +79,16 @@ MeteorY4= -100
 meteorspeed4 = random.randint(3,5)
 
 MeteorX5= random.randint(0, 600)
-MeteorY5= -70
+MeteorY5= -270
 meteorspeed5 = random.randint(3,5)
+
+MeteorX6= random.randint(0, 600)
+MeteorY6= -370
+meteorspeed6 = random.randint(3,5)
+
+MeteorX7= random.randint(0, 600)
+MeteorY7= -470
+meteorspeed7 = random.randint(3,5)
 
 Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
@@ -151,6 +159,20 @@ while True:
         MeteorX5= random.randint(0, 600)
         MeteorY5= -200
         meteorspeed5 = random.randint(3,5)
+
+    MeteorY6 += meteorspeed6
+    window.blit(Meteor, (MeteorX6, MeteorY6))
+    if MeteorY6 > windowHeight:
+        MeteorX6= random.randint(0, 600)
+        MeteorY6= -700
+        meteorspeed6 = 6
+
+    MeteorY7 += meteorspeed7
+    window.blit(Meteor, (MeteorX7, MeteorY7))
+    if MeteorY7 > windowHeight:
+        MeteorX7= random.randint(0, 600)
+        MeteorY7= -300
+        meteorspeed7 = 6
 
    
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
