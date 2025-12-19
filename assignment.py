@@ -58,15 +58,31 @@ clock = pygame.time.Clock()  #will allow us to set framerate
 
 egg1 = 0
 egg2 = -windowHeight
-speed = 2
+speed = 2.7
 RocketX= 250
 RocketY= 250
 Player1ROCKETSPEED = 5
-MeteorX= random.randint(0, 600)
-MeteorY= -10
-meteorspeed = random.randint(1,5)
+MeteorX1= random.randint(0, 600)
+MeteorY1= -10
+meteorspeed1 = random.randint(3,5)
 
-Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (100, 100))
+MeteorX2= random.randint(0, 600)
+MeteorY2= -50
+meteorspeed2 = random.randint(3,5)
+
+MeteorX3= random.randint(0, 600)
+MeteorY3= -200
+meteorspeed3 = random.randint(3,5)
+
+MeteorX4= random.randint(0, 600)
+MeteorY4= -100
+meteorspeed4 = random.randint(3,5)
+
+MeteorX5= random.randint(0, 600)
+MeteorY5= -70
+meteorspeed5 = random.randint(3,5)
+
+Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
@@ -100,6 +116,41 @@ while True:
     window.blit(background, (0, egg1))
     window.blit(background2, (0, egg2))
     window.blit(RedRocket ,(RocketX, RocketY))
+
+    MeteorY1 += meteorspeed1
+    window.blit(Meteor, (MeteorX1, MeteorY1))
+    if MeteorY1 > windowHeight:
+        MeteorX1= random.randint(0, 600)
+        MeteorY1= -250
+        meteorspeed1 = random.randint(3,5)
+
+    MeteorY2 += meteorspeed2
+    window.blit(Meteor, (MeteorX2, MeteorY2))
+    if MeteorY2 > windowHeight:
+        MeteorX2= random.randint(0, 600)
+        MeteorY2= -100
+        meteorspeed2 = random.randint(3,5)
+
+    MeteorY3 += meteorspeed3
+    window.blit(Meteor, (MeteorX3, MeteorY3))
+    if MeteorY3 > windowHeight:
+        MeteorX3= random.randint(0, 600)
+        MeteorY3= -400
+        meteorspeed3 = random.randint(3,5)
+
+    MeteorY4 += meteorspeed4
+    window.blit(Meteor, (MeteorX4, MeteorY4))
+    if MeteorY4 > windowHeight:
+        MeteorX4= random.randint(0, 600)
+        MeteorY4= -300
+        meteorspeed4 = random.randint(3,5)
+
+    MeteorY5 += meteorspeed5
+    window.blit(Meteor, (MeteorX5, MeteorY5))
+    if MeteorY5 > windowHeight:
+        MeteorX5= random.randint(0, 600)
+        MeteorY5= -200
+        meteorspeed5 = random.randint(3,5)
 
    
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
