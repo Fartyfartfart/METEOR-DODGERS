@@ -45,6 +45,7 @@ Features Added Beyond Level 3 Requirements:
 '''
 
 import pygame
+import random
 pygame.init()
 
 # *********SETUP**********
@@ -61,8 +62,12 @@ speed = 2
 RocketX= 250
 RocketY= 250
 Player1ROCKETSPEED = 5
+MeteorX= random.randint(0, 600)
+MeteorY= -10
+meteorspeed = random.randint(1,5)
 
-RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (200, 200))
+Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (100, 100))
+RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
 
@@ -78,7 +83,6 @@ while True:
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
-    
     
 
     key = pygame.key.get_pressed()
@@ -98,7 +102,7 @@ while True:
     window.blit(RedRocket ,(RocketX, RocketY))
 
    
-    #PUT YOUR GAME LOGIN HERE FOR EACH GAMESTATE
+    #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
     # *********DRAW THE FRAME**********
 
