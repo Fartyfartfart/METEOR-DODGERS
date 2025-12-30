@@ -8,6 +8,8 @@ References:
 
 (put a link to your reference here but also add a comment in the code below where you used the reference)
 
+https://www.youtube.com/watch?v=kEEgFNz_SHU
+
 -----------------------------------------------------------------------------
 
 Additional Libraries/Extensions:
@@ -115,12 +117,13 @@ while True:
     egg2 += speed
 
     if egg1 >= windowHeight:
-        egg1 = -windowWidth
+        egg1 = -windowHeight
     if egg2 >= windowHeight:
-        egg2 = -windowWidth
+        egg2 = -windowHeight
     
     RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
     RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
+    
 
     window.blit(background, (0, egg1))
     window.blit(background2, (0, egg2))
