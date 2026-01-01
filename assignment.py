@@ -57,7 +57,6 @@ windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()  #will allow us to set framerate
 
-
 egg1 = 0
 egg2 = -windowHeight
 speed = 2.7
@@ -93,15 +92,15 @@ MeteorY7= -470
 meteorspeed7 = random.randint(3,5)
 
 
-
+Player1Lost = pygame.transform.scale(pygame.image.load("Player1Lost.png"), (600, 500))
+Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600, 500))
 GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
 Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
 
-bgmusic = loadSound("background-music-2-456263.mp3")
-bgmusic.play()
+
 
 # *********GAME LOOP**********
 while True:
