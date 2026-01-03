@@ -50,6 +50,7 @@ import pygame
 import random
 pygame.init()
 
+gamestate = "menu"
 # *********SETUP**********
 
 windowWidth = 600
@@ -91,7 +92,7 @@ MeteorX7= random.randint(0, 600)
 MeteorY7= -470
 meteorspeed7 = random.randint(3,5)
 
-
+Tutorial = pygame.transform.scale(pygame.image.load("Tutorial.png"), (600, 500))
 Player1Lost = pygame.transform.scale(pygame.image.load("Player1Lost.png"), (600, 500))
 Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600, 500))
 GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
