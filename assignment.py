@@ -119,7 +119,7 @@ while True:
     if gameover:
         window.blit(GameOver, (0, 0))
         pygame.display.flip()
-        pygame.time.delay(3000)
+        continue
 
     key = pygame.key.get_pressed()
     egg1 += speed
