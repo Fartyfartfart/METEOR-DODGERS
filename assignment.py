@@ -51,6 +51,8 @@ import random
 pygame.init()
 
 gamestate = "menu"
+gameover = False
+
 # *********SETUP**********
 
 windowWidth = 600
@@ -113,7 +115,11 @@ while True:
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
-    
+
+    if gameover:
+        window.blit(GameOver, (0, 0))
+        pygame.display.flip()
+        pygame.time.delay(3000)
 
     key = pygame.key.get_pressed()
     egg1 += speed
@@ -181,6 +187,17 @@ while True:
         MeteorY7= -300
         meteorspeed7 = 6
 
+    rocketRect = pygame.Rect(RocketX, RocketY, 100, 100)
+
+    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 200, 200)) or \
+       rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 200, 200)):
+
+        gameover = True
    
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
