@@ -133,7 +133,7 @@ while True:
     if egg2 >= windowHeight:
         egg2 = -windowHeight
     
-    RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
+    RocketY += (key[pygame.A] - key[pygame.K_UP]) * Player1ROCKETSPEED
     RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
     
 
