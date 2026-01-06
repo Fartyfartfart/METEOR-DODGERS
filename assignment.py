@@ -187,17 +187,23 @@ while True:
         MeteorY7= -300
         meteorspeed7 = 6
 
-    rocketRect = pygame.Rect(RocketX, RocketY, 100, 100)
+    rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
 
-    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 200, 200)) or \
-       rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 200, 200)):
-
+    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 100, 100)):
         gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 100, 100)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 100, 100)): 
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 100, 100)): 
+         gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 100, 100)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 100, 100)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 100, 100)):
+        gameover = True
+        
    
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
