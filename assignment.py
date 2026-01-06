@@ -52,6 +52,9 @@ pygame.init()
 
 gamestate = "menu"
 gameover = False
+Start = False
+Twoplayer = False
+Tutorial = False
 
 # *********SETUP**********
 
