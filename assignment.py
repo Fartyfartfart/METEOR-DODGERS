@@ -9,6 +9,7 @@ References:
 (put a link to your reference here but also add a comment in the code below where you used the reference)
 
 https://www.youtube.com/watch?v=kEEgFNz_SHU
+https://www.youtube.com/watch?v=fylVGdGBKYA
 
 -----------------------------------------------------------------------------
 
@@ -52,6 +53,8 @@ pygame.init()
 
 gamestate = "menu"
 gameover = False
+PlayerOneLost = False
+PlayerTwoLost = False
 Start = False
 Twoplayer = False
 Tutorial = False
@@ -124,6 +127,16 @@ while True:
         pygame.display.flip()
         continue
 
+    if PlayerOneLost:
+        window.blit(Player1Lost, (0, 0))
+        pygame.display.flip()
+        continue
+
+    if PlayerTwoLost:
+        window.blit(Player2Lost, (0, 0))
+        pygame.display.flip()
+        continue
+
     key = pygame.key.get_pressed()
     egg1 += speed
     egg2 += speed
@@ -133,7 +146,7 @@ while True:
     if egg2 >= windowHeight:
         egg2 = -windowHeight
     
-    RocketY += (key[pygame.A] - key[pygame.K_UP]) * Player1ROCKETSPEED
+    RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
     RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
     
 
