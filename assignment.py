@@ -216,19 +216,19 @@ while True:
         RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
 
 
-    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 100, 100)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 80, 80)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 100, 100)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 80, 80)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 100, 100)): 
+    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 80, 80)): 
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 100, 100)): 
+    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 80, 80)): 
          gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 100, 100)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 80, 80)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 100, 100)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 80, 80)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 100, 100)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 80, 80)):
         gameover = True
         
    
