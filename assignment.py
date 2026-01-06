@@ -205,6 +205,17 @@ while True:
 
     rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
 
+    if RocketX < 0: #this code makes it so that the rocket cant exit the screen
+        RocketX = 0 #this checks if the rocket go to the left so it blocks it by reseting the x
+    if RocketX > windowWidth - 100:  
+        RocketX = windowWidth - 100 #this checks if the rocket goes from the right of the screen and stops it so it stays visible
+
+    if RocketY < 0:
+        RocketY = 0 #this checks if the rocket go to the top so it blocks it by reseting the x
+    if RocketY > windowHeight - 100: 
+        RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
+
+
     if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 100, 100)):
         gameover = True
     if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 100, 100)):
