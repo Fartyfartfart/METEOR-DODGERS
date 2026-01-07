@@ -65,6 +65,9 @@ windowWidth = 600
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()  #will allow us to set framerate
+ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 20 )
+score = 0
+
 
 egg1 = 0
 egg2 = -windowHeight
@@ -146,6 +149,8 @@ while True:
     if egg2 >= windowHeight:
         egg2 = -windowHeight
     
+        score += 1 / 60
+        
     RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
     RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
     
@@ -216,19 +221,19 @@ while True:
         RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
 
 
-    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 80, 80)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 80, 80)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 80, 80)): 
+    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 80, 80)): 
+    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
          gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 80, 80)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 80, 80)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 80, 80)):
+    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
         gameover = True
         
    
