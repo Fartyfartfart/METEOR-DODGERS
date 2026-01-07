@@ -65,7 +65,7 @@ windowWidth = 600
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()  #will allow us to set framerate
-ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 20 )
+ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 30 )
 score = 0
 
 
@@ -141,6 +141,9 @@ while True:
         continue
 
     key = pygame.key.get_pressed()
+
+    score += 1 / 60
+
     egg1 += speed
     egg2 += speed
 
@@ -149,7 +152,7 @@ while True:
     if egg2 >= windowHeight:
         egg2 = -windowHeight
     
-        score += 1 / 60
+        score += 1
         
     RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
     RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
@@ -236,7 +239,8 @@ while True:
     if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
         gameover = True
         
-   
+    ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
+    window.blit(ScorePlacement, (300, 15))
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
     # *********DRAW THE FRAME**********
