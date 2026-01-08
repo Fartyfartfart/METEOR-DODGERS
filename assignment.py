@@ -112,7 +112,9 @@ RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
 
-
+Single = pygame.Rect(150, 150, 200, 50)
+Double = pygame.Rect(150, 600, 200, 50)
+Tutorial = pygame.Rect(550, 600, 200, 50)
 
 # *********GAME LOOP**********
 while True:
