@@ -336,21 +336,6 @@ while True:
    
     # *********GAME LOGIC**********
 
-    if gameover:
-        window.blit(GameOver, (0, 0))
-        pygame.display.flip()
-        continue
-
-    if PlayerOneLost:
-        window.blit(Player1Lost, (0, 0))
-        pygame.display.flip()
-        continue
-
-    if PlayerTwoLost:
-        window.blit(Player2Lost, (0, 0))
-        pygame.display.flip()
-        continue
-
     key = pygame.key.get_pressed()
 
     score += 1 / 60
