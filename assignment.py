@@ -64,10 +64,24 @@ Tutorial = False
 windowWidth = 600
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
-clock = pygame.time.Clock()  #will allow us to set framerate
+pygame.display.set_caption("Meteor Dodgers")
 ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 30 )
 score = 0
+clock = pygame.time.Clock()  #will allow us to set framerate
 
+
+
+ScoreFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 30)
+TitleFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 40)
+ButtonFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20)
+
+Single = pygame.Rect(150, 150, 200, 50)
+Double = pygame.Rect(150, 600, 200, 50)
+Tutorial = pygame.Rect(550, 600, 200, 50)
+
+menu_background = pygame.transform.scale(
+    pygame.image.load("Drawing.sketchpad.png"), (600, 500)
+)
 
 egg1 = 0
 egg2 = -windowHeight
@@ -111,11 +125,6 @@ Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
-
-Single = pygame.Rect(150, 150, 200, 50)
-Double = pygame.Rect(150, 600, 200, 50)
-Tutorial = pygame.Rect(550, 600, 200, 50)
-
 # *********GAME LOOP**********
 while True:
     # *********EVENTS**********
@@ -243,8 +252,6 @@ while True:
 
     ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
     window.blit(ScorePlacement, (300, 15))
-
-
 
 
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
