@@ -178,7 +178,7 @@ while True:
             window.blit(Tutorial, (0, 0))
             pygame.display.flip()
             continue
-            
+                     
 
     if gameover:
         window.blit(GameOver, (0, 0))
@@ -296,7 +296,7 @@ while True:
 
     ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
     window.blit(ScorePlacement, (300, 15))
-
+        
 
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
@@ -306,8 +306,114 @@ while True:
 
     # *********SHOW THE FRAME TO THE USER**********
     pygame.display.flip()
-    clock.tick(60) #Force frame rate to 60fps or lower
+    clock.tick(200) #Force frame rate to 60fps or lower
 
+    if gamestate == "Double":
+    
+            key = pygame.key.get_pressed()
+
+            score += 1 / 60
+
+            egg1 += speed
+            egg2 += speed
+
+            if egg1 >= windowHeight:
+                egg1 = -windowHeight
+            if egg2 >= windowHeight:
+                egg2 = -windowHeight
+            
+                score += 1
+                
+            RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
+            RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
+            
+
+            window.blit(background, (0, egg1))
+            window.blit(background2, (0, egg2))
+            window.blit(RedRocket ,(RocketX, RocketY))
+
+            MeteorY1 += meteorspeed1
+            window.blit(Meteor, (MeteorX1, MeteorY1))
+            if MeteorY1 > windowHeight:
+                MeteorX1= random.randint(0, 600)
+                MeteorY1= -250
+                meteorspeed1 = random.randint(3,5)
+
+            MeteorY2 += meteorspeed2
+            window.blit(Meteor, (MeteorX2, MeteorY2))
+            if MeteorY2 > windowHeight:
+                MeteorX2= random.randint(0, 600)
+                MeteorY2= -100
+                meteorspeed2 = random.randint(3,5)
+
+            MeteorY3 += meteorspeed3
+            window.blit(Meteor, (MeteorX3, MeteorY3))
+            if MeteorY3 > windowHeight:
+                MeteorX3= random.randint(0, 600)
+                MeteorY3= -400
+                meteorspeed3 = random.randint(3,5)
+
+            MeteorY4 += meteorspeed4
+            window.blit(Meteor, (MeteorX4, MeteorY4))
+            if MeteorY4 > windowHeight:
+                MeteorX4= random.randint(0, 600)
+                MeteorY4= -300
+                meteorspeed4 = random.randint(3,5)
+
+            MeteorY5 += meteorspeed5
+            window.blit(Meteor, (MeteorX5, MeteorY5))
+            if MeteorY5 > windowHeight:
+                MeteorX5= random.randint(0, 600)
+                MeteorY5= -200
+                meteorspeed5 = random.randint(3,5)
+
+            MeteorY6 += meteorspeed6
+            window.blit(Meteor, (MeteorX6, MeteorY6))
+            if MeteorY6 > windowHeight:
+                MeteorX6= random.randint(0, 600)
+                MeteorY6= -700
+                meteorspeed6 = 6
+
+            MeteorY7 += meteorspeed7
+            window.blit(Meteor, (MeteorX7, MeteorY7))
+            if MeteorY7 > windowHeight:
+                MeteorX7= random.randint(0, 600)
+                MeteorY7= -300
+                meteorspeed7 = 6
+
+            rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
+
+            if RocketX < 0: 
+                RocketX = 0 
+            if RocketX > windowWidth - 100:  
+                RocketX = windowWidth - 100 
+
+            if RocketY < 0:
+                RocketY = 0 
+            if RocketY > windowHeight - 100: 
+                RocketY = windowHeight - 100
+
+
+            if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
+                gameover = True
+            if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
+                gameover = True
+
+            ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
+            window.blit(ScorePlacement, (300, 15))
+
+    pygame.display.flip()
+    clock.tick(200)
 
 pygame.quit()
 
