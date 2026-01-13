@@ -184,11 +184,7 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
                 gamestate = "Double"
-
-        if ev.type == pygame.MOUSEBUTTONDOWN:
-            if Return.collidepoint(ev.pos):
-                gamestate = "Return"
-      
+               
             
         pygame.display.flip()
         clock.tick(60)
@@ -210,16 +206,16 @@ while True:
         continue
 
     if PlayerOneLost:
-        pygame.draw.rect(window, (0, 0, 0), Return)
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
+        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
+        window.blit(Player1Lost, (0, 0))
         pygame.display.flip()
         continue
 
     if PlayerTwoLost:
-        pygame.draw.rect(window, (0, 0, 0), Return)
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 235))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
+        window.blit(Player2Lost, (0, 0))
         pygame.display.flip()
         continue
 
