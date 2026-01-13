@@ -160,6 +160,7 @@ while True:
         pygame.draw.rect(window, (0, 0, 0), Single)
         pygame.draw.rect(window, (0, 0, 0), Double)
         pygame.draw.rect(window, (0, 0, 0), TutorialButton)
+        pygame.draw.rect(window, (0, 0, 0), Return)
 
         window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
         pygame.draw.rect(window, (255, 255, 255), Single, 3)
@@ -183,7 +184,11 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
                 gamestate = "Double"
-               
+
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+            if Return.collidepoint(ev.pos):
+                gamestate = "Return"
+      
             
         pygame.display.flip()
         clock.tick(60)
@@ -197,23 +202,24 @@ while True:
                      
 
     if gameover:
-        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
-        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(GameOver, (0, 0))
+        pygame.draw.rect(window, (0, 0, 0), Return)
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         pygame.display.flip()
         continue
 
     if PlayerOneLost:
-        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
+        pygame.draw.rect(window, (0, 0, 0), Return)
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
-        window.blit(Player1Lost, (0, 0))
         pygame.display.flip()
         continue
 
     if PlayerTwoLost:
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 235))
+        pygame.draw.rect(window, (0, 0, 0), Return)
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
-        window.blit(Player2Lost, (0, 0))
         pygame.display.flip()
         continue
 
