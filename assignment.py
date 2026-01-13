@@ -65,7 +65,7 @@ pygame.display.set_caption("Meteor Dodgers")
 ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 30 )
 clock = pygame.time.Clock()  #will allow us to set framerate
 
-MeteorDelay = None
+MeteorDelay = 0
 
 ScoreFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 30)
 TitleFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 40)
@@ -155,6 +155,7 @@ while True:
 
         window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
         pygame.draw.rect(window, (255, 255, 255), Single, 3)
+        DelayMeteor = pygame.time.get_ticks()
         window.blit(ButtonFont.render("Double", True, (255, 255, 255)), (237, 305))
         pygame.draw.rect(window, (255, 255, 255), Double, 3)
         window.blit(ButtonFont.render("Tutorial", True, (255, 255, 255)), (215, 375))
@@ -163,9 +164,9 @@ while True:
 
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
+            
             if Single.collidepoint(ev.pos):
                 gamestate = "game"
-                MeteorDelay= pygame.time.get_ticks()
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if TutorialButton.collidepoint(ev.pos):
@@ -223,57 +224,59 @@ while True:
     window.blit(background, (0, egg1))
     window.blit(background2, (0, egg2))
     window.blit(RedRocket ,(RocketX, RocketY))
-    
-if MeteorDelay is not None and pygame.time.get_ticks() - MeteorDelay > 10000:
 
-    MeteorY1 += meteorspeed1
-    window.blit(Meteor, (MeteorX1, MeteorY1))
-    if MeteorY1 > windowHeight:
-        MeteorX1= random.randint(0, 600)
-        MeteorY1= -250
-        meteorspeed1 = random.randint(3,5)
 
-    MeteorY2 += meteorspeed2
-    window.blit(Meteor, (MeteorX2, MeteorY2))
-    if MeteorY2 > windowHeight:
-        MeteorX2= random.randint(0, 600)
-        MeteorY2= -100
-        meteorspeed2 = random.randint(3,5)
+    currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
+    if currentTime - DelayMeteor > 5000:
 
-    MeteorY3 += meteorspeed3
-    window.blit(Meteor, (MeteorX3, MeteorY3))
-    if MeteorY3 > windowHeight:
-        MeteorX3= random.randint(0, 600)
-        MeteorY3= -400
-        meteorspeed3 = random.randint(3,5)
+        MeteorY1 += meteorspeed1
+        window.blit(Meteor, (MeteorX1, MeteorY1))
+        if MeteorY1 > windowHeight:
+            MeteorX1= random.randint(0, 600)
+            MeteorY1= -250
+            meteorspeed1 = random.randint(3,5)
 
-    MeteorY4 += meteorspeed4
-    window.blit(Meteor, (MeteorX4, MeteorY4))
-    if MeteorY4 > windowHeight:
-        MeteorX4= random.randint(0, 600)
-        MeteorY4= -300
-        meteorspeed4 = random.randint(3,5)
+        MeteorY2 += meteorspeed2
+        window.blit(Meteor, (MeteorX2, MeteorY2))
+        if MeteorY2 > windowHeight:
+            MeteorX2= random.randint(0, 600)
+            MeteorY2= -100
+            meteorspeed2 = random.randint(3,5)
 
-    MeteorY5 += meteorspeed5
-    window.blit(Meteor, (MeteorX5, MeteorY5))
-    if MeteorY5 > windowHeight:
-        MeteorX5= random.randint(0, 600)
-        MeteorY5= -200
-        meteorspeed5 = random.randint(3,5)
+        MeteorY3 += meteorspeed3
+        window.blit(Meteor, (MeteorX3, MeteorY3))
+        if MeteorY3 > windowHeight:
+            MeteorX3= random.randint(0, 600)
+            MeteorY3= -400
+            meteorspeed3 = random.randint(3,5)
 
-    MeteorY6 += meteorspeed6
-    window.blit(Meteor, (MeteorX6, MeteorY6))
-    if MeteorY6 > windowHeight:
-        MeteorX6= random.randint(0, 600)
-        MeteorY6= -700
-        meteorspeed6 = 6
+        MeteorY4 += meteorspeed4
+        window.blit(Meteor, (MeteorX4, MeteorY4))
+        if MeteorY4 > windowHeight:
+            MeteorX4= random.randint(0, 600)
+            MeteorY4= -300
+            meteorspeed4 = random.randint(3,5)
 
-    MeteorY7 += meteorspeed7
-    window.blit(Meteor, (MeteorX7, MeteorY7))
-    if MeteorY7 > windowHeight:
-        MeteorX7= random.randint(0, 600)
-        MeteorY7= -300
-        meteorspeed7 = 6
+        MeteorY5 += meteorspeed5
+        window.blit(Meteor, (MeteorX5, MeteorY5))
+        if MeteorY5 > windowHeight:
+            MeteorX5= random.randint(0, 600)
+            MeteorY5= -200
+            meteorspeed5 = random.randint(3,5)
+
+        MeteorY6 += meteorspeed6
+        window.blit(Meteor, (MeteorX6, MeteorY6))
+        if MeteorY6 > windowHeight:
+            MeteorX6= random.randint(0, 600)
+            MeteorY6= -700
+            meteorspeed6 = 6
+
+        MeteorY7 += meteorspeed7
+        window.blit(Meteor, (MeteorX7, MeteorY7))
+        if MeteorY7 > windowHeight:
+            MeteorX7= random.randint(0, 600)
+            MeteorY7= -300
+            meteorspeed7 = 6
 
     rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
 
@@ -335,58 +338,6 @@ if MeteorDelay is not None and pygame.time.get_ticks() - MeteorDelay > 10000:
             window.blit(RedRocket ,(RocketX3, RocketY3))
             window.blit(BlueRocket ,(RocketX2, RocketY2))
 
-            MeteorY1 += meteorspeed1
-            window.blit(Meteor, (MeteorX1, MeteorY1))
-            if MeteorY1 > windowHeight:
-                MeteorX1= random.randint(0, 600)
-                MeteorY1= -250
-                meteorspeed1 = random.randint(3,5)
-
-            MeteorY2 += meteorspeed2
-            window.blit(Meteor, (MeteorX2, MeteorY2))
-            if MeteorY2 > windowHeight:
-                MeteorX2= random.randint(0, 600)
-                MeteorY2= -100
-                meteorspeed2 = random.randint(3,5)
-
-            MeteorY3 += meteorspeed3
-            window.blit(Meteor, (MeteorX3, MeteorY3))
-            if MeteorY3 > windowHeight:
-                MeteorX3= random.randint(0, 600)
-                MeteorY3= -400
-                meteorspeed3 = random.randint(3,5)
-
-            MeteorY4 += meteorspeed4
-            window.blit(Meteor, (MeteorX4, MeteorY4))
-            if MeteorY4 > windowHeight:
-                MeteorX4= random.randint(0, 600)
-                MeteorY4= -300
-                meteorspeed4 = random.randint(3,5)
-
-            MeteorY5 += meteorspeed5
-            window.blit(Meteor, (MeteorX5, MeteorY5))
-            if MeteorY5 > windowHeight:
-                MeteorX5= random.randint(0, 600)
-                MeteorY5= -200
-                meteorspeed5 = random.randint(3,5)
-
-            MeteorY6 += meteorspeed6
-            window.blit(Meteor, (MeteorX6, MeteorY6))
-            if MeteorY6 > windowHeight:
-                MeteorX6= random.randint(0, 600)
-                MeteorY6= -700
-                meteorspeed6 = 6
-
-            MeteorY7 += meteorspeed7
-            window.blit(Meteor, (MeteorX7, MeteorY7))
-            if MeteorY7 > windowHeight:
-                MeteorX7= random.randint(0, 600)
-                MeteorY7= -300
-                meteorspeed7 = 6
-
-            Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
-            Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
-
             if RocketX3 < 0: 
                 RocketX3 = 0 
             if RocketX3 > windowWidth - 100:  
@@ -399,45 +350,119 @@ if MeteorDelay is not None and pygame.time.get_ticks() - MeteorDelay > 10000:
 
             if RocketX2 < 0: 
                 RocketX2 = 0 
-            if RocketX2 > windowWidth - 100:  
-                RocketX2 = windowWidth - 100 
+                if RocketX2 > windowWidth - 119:  
+                    RocketX2 = windowWidth - 119 
 
             if RocketY2 < 0:
                 RocketY2 = 0 
-            if RocketY2 > windowHeight - 100: 
-                RocketY2 = windowHeight - 100
+            if RocketY2 > windowHeight - 125: 
+                RocketY2 = windowHeight - 125
+
+            currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
+            if currentTime - DelayMeteor > 5000:
+                MeteorY1 += meteorspeed1
+                window.blit(Meteor, (MeteorX1, MeteorY1))
+                if MeteorY1 > windowHeight:
+                    MeteorX1= random.randint(0, 600)
+                    MeteorY1= -250
+                    meteorspeed1 = random.randint(3,5)
+
+                MeteorY2 += meteorspeed2
+                window.blit(Meteor, (MeteorX2, MeteorY2))
+                if MeteorY2 > windowHeight:
+                    MeteorX2= random.randint(0, 600)
+                    MeteorY2= -100
+                    meteorspeed2 = random.randint(3,5)
+
+                MeteorY3 += meteorspeed3
+                window.blit(Meteor, (MeteorX3, MeteorY3))
+                if MeteorY3 > windowHeight:
+                    MeteorX3= random.randint(0, 600)
+                    MeteorY3= -400
+                    meteorspeed3 = random.randint(3,5)
+
+                MeteorY4 += meteorspeed4
+                window.blit(Meteor, (MeteorX4, MeteorY4))
+                if MeteorY4 > windowHeight:
+                    MeteorX4= random.randint(0, 600)
+                    MeteorY4= -300
+                    meteorspeed4 = random.randint(3,5)
+
+                MeteorY5 += meteorspeed5
+                window.blit(Meteor, (MeteorX5, MeteorY5))
+                if MeteorY5 > windowHeight:
+                    MeteorX5= random.randint(0, 600)
+                    MeteorY5= -200
+                    meteorspeed5 = random.randint(3,5)
+
+                MeteorY6 += meteorspeed6
+                window.blit(Meteor, (MeteorX6, MeteorY6))
+                if MeteorY6 > windowHeight:
+                    MeteorX6= random.randint(0, 600)
+                    MeteorY6= -700
+                    meteorspeed6 = 6
+
+                MeteorY7 += meteorspeed7
+                window.blit(Meteor, (MeteorX7, MeteorY7))
+                if MeteorY7 > windowHeight:
+                    MeteorX7= random.randint(0, 600)
+                    MeteorY7= -300
+                    meteorspeed7 = 6
+
+                Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
+                Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
+
+                if RocketX3 < 0: 
+                    RocketX3 = 0 
+                if RocketX3 > windowWidth - 100:  
+                    RocketX3 = windowWidth - 100 
+
+                if RocketY3 < 0:
+                    RocketY3 = 0 
+                if RocketY3 > windowHeight - 100: 
+                    RocketY3 = windowHeight - 100
+
+                if RocketX2 < 0: 
+                    RocketX2 = 0 
+                if RocketX2 > windowWidth - 100:  
+                    RocketX2 = windowWidth - 100 
+
+                if RocketY2 < 0:
+                    RocketY2 = 0 
+                if RocketY2 > windowHeight - 100: 
+                    RocketY2 = windowHeight - 100
 
 
 
-            if Red.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
-                PlayerOneLost = True
-            if Red.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
-                PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
+                    PlayerOneLost = True
+                if Red.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
+                    PlayerOneLost = True
 
-            if Blue.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
-                PlayerTwoLost = True
-            if Blue.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
-                PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
+                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
+                    PlayerTwoLost = True
 
             ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
             window.blit(ScorePlacement, (300, 15))
@@ -450,5 +475,5 @@ if MeteorDelay is not None and pygame.time.get_ticks() - MeteorDelay > 10000:
 
     # *********SHOW THE FRAME TO THE USER**********
     pygame.display.flip()
-    clock.tick(1000) #Force frame rate to 60fps or lower
+    clock.tick(10) #Force frame rate to 60fps or lower
 pygame.quit()
