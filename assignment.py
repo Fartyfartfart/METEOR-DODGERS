@@ -126,7 +126,7 @@ Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600,
 GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
 Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
-BlueRocket = pygame.transform.scale(pygame.image.load("a-rocket-in-pixel-art-style-vector-removebg-preview.png"), (100, 100))
+BlueRocket = pygame.transform.scale(pygame.image.load("a-rocket-in-pixel-art-style-vector-removebg-preview.png"), (145, 145))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
 # *********GAME LOOP**********
@@ -166,6 +166,7 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Single.collidepoint(ev.pos):
                 gamestate = "game"
+                pygame.time.delay(10000)
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if TutorialButton.collidepoint(ev.pos):
@@ -174,6 +175,7 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
                 gamestate = "Double"
+                pygame.time.delay(10000)
             
         pygame.display.flip()
         clock.tick(60)
@@ -382,7 +384,7 @@ while True:
                 meteorspeed7 = 6
 
             Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
-            Blue = pygame.Rect(RocketX2, RocketY2, 40, 40)
+            Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
 
             if RocketX3 < 0: 
                 RocketX3 = 0 
@@ -447,5 +449,5 @@ while True:
 
     # *********SHOW THE FRAME TO THE USER**********
     pygame.display.flip()
-    clock.tick(200) #Force frame rate to 60fps or lower
+    clock.tick(1000) #Force frame rate to 60fps or lower
 pygame.quit()
