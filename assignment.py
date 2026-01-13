@@ -76,8 +76,11 @@ Single = pygame.Rect(200, 220, 200, 50)
 Double = pygame.Rect(200, 290, 200, 50)
 TutorialButton = pygame.Rect(200, 360, 200, 50)
 
+pygame.mixer.music.load('background.mp3')
 BackgroundMenu = pygame.transform.scale(
+
     pygame.image.load("Drawing.sketchpad.png"), (600, 500))
+
 RocketX3 = 250  # starting position for double first player
 RocketY3 = 250
 RocketX2 = 350  # starting position for Player 2
@@ -125,6 +128,7 @@ Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600,
 GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
 Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
 RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
+TwoRedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
 BlueRocket = pygame.transform.scale(pygame.image.load("a-rocket-in-pixel-art-style-vector-removebg-preview.png"), (145, 145))
 background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
 background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
@@ -134,7 +138,10 @@ while True:
     ev = pygame.event.poll()    # Look for any event
     if ev.type == pygame.QUIT:  # windowow close button clicked?
         break                   #   ... leave game loop
-   
+    if not pygame.mixer.music.get_busy():
+        pygame.mixer.music.play(-1)
+    else:
+        pygame.mixer.music.get_busy()
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
@@ -311,7 +318,7 @@ while True:
         
 
     if gamestate == "Double":
-    
+            clock.tick(60)
             key = pygame.key.get_pressed()
 
             score += 1 / 60
@@ -335,7 +342,7 @@ while True:
 
             window.blit(background, (0, egg1))
             window.blit(background2, (0, egg2))
-            window.blit(RedRocket ,(RocketX3, RocketY3))
+            window.blit(TwoRedRocket ,(RocketX3, RocketY3))
             window.blit(BlueRocket ,(RocketX2, RocketY2))
 
             if RocketX3 < 0: 
@@ -410,7 +417,7 @@ while True:
                     meteorspeed7 = 6
 
                 Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
-                Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
+                Blue = pygame.Rect(RocketX2, RocketY2, 100, 100)
 
                 if RocketX3 < 0: 
                     RocketX3 = 0 
@@ -475,5 +482,5 @@ while True:
 
     # *********SHOW THE FRAME TO THE USER**********
     pygame.display.flip()
-    clock.tick(10) #Force frame rate to 60fps or lower
+    clock.tick(60) #Force frame rate to 60fps or lower
 pygame.quit()
