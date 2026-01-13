@@ -75,6 +75,7 @@ CreditFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20)
 Single = pygame.Rect(200, 220, 200, 50)
 Double = pygame.Rect(200, 290, 200, 50)
 TutorialButton = pygame.Rect(200, 360, 200, 50)
+Return = pygame.Rect(200, 360, 200, 50)
 
 BackgroundMenu = pygame.transform.scale(
     pygame.image.load("Drawing.sketchpad.png"), (600, 500))
@@ -189,16 +190,22 @@ while True:
                      
 
     if gameover:
+        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(GameOver, (0, 0))
         pygame.display.flip()
         continue
 
     if PlayerOneLost:
+        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(Player1Lost, (0, 0))
         pygame.display.flip()
         continue
 
     if PlayerTwoLost:
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 235))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(Player2Lost, (0, 0))
         pygame.display.flip()
         continue
