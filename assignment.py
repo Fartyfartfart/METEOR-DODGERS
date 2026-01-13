@@ -65,7 +65,7 @@ pygame.display.set_caption("Meteor Dodgers")
 ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 30 )
 clock = pygame.time.Clock()  #will allow us to set framerate
 
-
+MeteorDelay = None
 
 ScoreFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 30)
 TitleFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 40)
@@ -77,8 +77,7 @@ Double = pygame.Rect(200, 290, 200, 50)
 TutorialButton = pygame.Rect(200, 360, 200, 50)
 
 BackgroundMenu = pygame.transform.scale(
-    pygame.image.load("Drawing.sketchpad.png"), (600, 500)
-)
+    pygame.image.load("Drawing.sketchpad.png"), (600, 500))
 RocketX3 = 250  # starting position for double first player
 RocketY3 = 250
 RocketX2 = 350  # starting position for Player 2
@@ -166,7 +165,7 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Single.collidepoint(ev.pos):
                 gamestate = "game"
-                pygame.time.delay(10000)
+                MeteorDelay= pygame.time.get_ticks()
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if TutorialButton.collidepoint(ev.pos):
@@ -175,7 +174,7 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
                 gamestate = "Double"
-                pygame.time.delay(10000)
+               
             
         pygame.display.flip()
         clock.tick(60)
@@ -224,6 +223,8 @@ while True:
     window.blit(background, (0, egg1))
     window.blit(background2, (0, egg2))
     window.blit(RedRocket ,(RocketX, RocketY))
+    
+if MeteorDelay is not None and pygame.time.get_ticks() - MeteorDelay > 10000:
 
     MeteorY1 += meteorspeed1
     window.blit(Meteor, (MeteorX1, MeteorY1))
