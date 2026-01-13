@@ -152,7 +152,7 @@ while True:
         pygame.draw.rect(window, (0, 0, 0), (10, 70, 580, 70))
         window.blit(title, (20, 80))
 
-        credit = CreditFont.render("Credits: TerrenceT Inc", True, (255, 255, 255))
+        credit = CreditFont.render("Credits: TerrenceT Inc™", True, (255, 255, 255))
         pygame.draw.rect(window, (0, 0, 0), (70, 155, 480, 50))
         window.blit(credit, (80, 165))
 
@@ -287,6 +287,22 @@ while True:
 
     rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
 
+    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
+        gameover = True
+    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
+        gameover = True
+
+
     if RocketX < 0: #this code makes it so that the rocket cant exit the screen
         RocketX = 0 #this checks if the rocket go to the left so it blocks it by reseting the x
     if RocketX > windowWidth - 100:  
@@ -297,21 +313,6 @@ while True:
     if RocketY > windowHeight - 100: 
         RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
 
-
-    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
-         gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
-        gameover = True
 
     ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
     window.blit(ScorePlacement, (300, 15))
@@ -417,7 +418,7 @@ while True:
                     meteorspeed7 = 6
 
                 Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
-                Blue = pygame.Rect(RocketX2, RocketY2, 100, 100)
+                Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
 
                 if RocketX3 < 0: 
                     RocketX3 = 0 
@@ -443,18 +444,25 @@ while True:
 
                 if Red.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
                     PlayerOneLost = True
+                    gameover = False
                 if Red.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
                     PlayerOneLost = True
+                    gameover = False
 
                 if Blue.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
                     PlayerTwoLost = True
@@ -471,8 +479,8 @@ while True:
                 if Blue.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
                     PlayerTwoLost = True
 
-            ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
-            window.blit(ScorePlacement, (300, 15))
+                ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
+                window.blit(ScorePlacement, (300, 15))
 
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
