@@ -75,7 +75,7 @@ CreditFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20)
 Single = pygame.Rect(200, 220, 200, 50)
 Double = pygame.Rect(200, 290, 200, 50)
 TutorialButton = pygame.Rect(200, 360, 200, 50)
-Return = pygame.Rect(200, 360, 200, 50)
+Return = pygame.Rect(200, 420, 200, 50) 
 
 pygame.mixer.music.load('background.mp3')
 BackgroundMenu = pygame.transform.scale(
@@ -154,13 +154,12 @@ while True:
         window.blit(title, (20, 80))
 
         credit = CreditFont.render("Credits: TerrenceT Inc™", True, (255, 255, 255))
-        pygame.draw.rect(window, (0, 0, 0), (70, 155, 480, 50))
+        pygame.draw.rect(window, (0, 0, 0), (70, 155, 490, 50))
         window.blit(credit, (80, 165))
 
         pygame.draw.rect(window, (0, 0, 0), Single)
         pygame.draw.rect(window, (0, 0, 0), Double)
         pygame.draw.rect(window, (0, 0, 0), TutorialButton)
-        pygame.draw.rect(window, (0, 0, 0), Return)
 
         window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
         pygame.draw.rect(window, (255, 255, 255), Single, 3)
@@ -184,152 +183,192 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
                 gamestate = "Double"
+        
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+            if Return.collidepoint(ev.pos):
+                gamestate = "Return"
                
             
         pygame.display.flip()
         clock.tick(60)
         continue
-    
-            
+
+
     if gamestate == "tutorial":
             window.blit(Tutorial, (0, 0))
+            pygame.draw.rect(window, (0, 0, 0), Return)
+            window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
+            pygame.draw.rect(window, (255, 255, 255), Return, 3)
+
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                if Return.collidepoint(ev.pos):
+                    gamestate = "menu"
+                    gameover = False
+                    PlayerOneLost = False
+                    PlayerTwoLost = False
+
             pygame.display.flip()
             continue
                      
 
     if gameover:
         window.blit(GameOver, (0, 0))
+        ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
+        window.blit(ShowingDaScore, (170, 260))
         pygame.draw.rect(window, (0, 0, 0), Return)
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 375))
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
         pygame.display.flip()
+
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+                if Return.collidepoint(ev.pos):
+                    gamestate = "menu"
+                    gameover = False
+
         continue
 
     if PlayerOneLost:
-        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
-        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(Player1Lost, (0, 0))
+        ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
+        window.blit(ShowingDaScore, (170, 260))
+        pygame.draw.rect(window, (0, 0, 0), Return)
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
+
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+                if Return.collidepoint(ev.pos):
+                    gamestate = "menu"
+                    PlayerOneLost = False
+
         pygame.display.flip()
         continue
 
     if PlayerTwoLost:
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 235))
-        pygame.draw.rect(window, (255, 255, 255), Return, 3)
         window.blit(Player2Lost, (0, 0))
+        ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
+        window.blit(ShowingDaScore, (170, 260))
+        pygame.draw.rect(window, (0, 0, 0), Return)
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
+        pygame.draw.rect(window, (255, 255, 255), Return, 3)
+
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+                if Return.collidepoint(ev.pos):
+                    gamestate = "menu"
+                    PlayerTwoLost = False
+
         pygame.display.flip()
         continue
 
     key = pygame.key.get_pressed()
+    if gamestate == "game":
 
-    score += 1 / 60
+        score += 1 / 60
 
-    egg1 += speed
-    egg2 += speed
+        egg1 += speed
+        egg2 += speed
 
-    if egg1 >= windowHeight:
-        egg1 = -windowHeight
-    if egg2 >= windowHeight:
-        egg2 = -windowHeight
-    
-        score += 1
+        if egg1 >= windowHeight:
+            egg1 = -windowHeight
+        if egg2 >= windowHeight:
+            egg2 = -windowHeight
         
-    RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
-    RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
-    
+            score += 1
 
-    window.blit(background, (0, egg1))
-    window.blit(background2, (0, egg2))
-    window.blit(RedRocket ,(RocketX, RocketY))
-
-
-    currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
-    if currentTime - DelayMeteor > 5000:
-
-        MeteorY1 += meteorspeed1
-        window.blit(Meteor, (MeteorX1, MeteorY1))
-        if MeteorY1 > windowHeight:
-            MeteorX1= random.randint(0, 600)
-            MeteorY1= -250
-            meteorspeed1 = random.randint(3,5)
-
-        MeteorY2 += meteorspeed2
-        window.blit(Meteor, (MeteorX2, MeteorY2))
-        if MeteorY2 > windowHeight:
-            MeteorX2= random.randint(0, 600)
-            MeteorY2= -100
-            meteorspeed2 = random.randint(3,5)
-
-        MeteorY3 += meteorspeed3
-        window.blit(Meteor, (MeteorX3, MeteorY3))
-        if MeteorY3 > windowHeight:
-            MeteorX3= random.randint(0, 600)
-            MeteorY3= -400
-            meteorspeed3 = random.randint(3,5)
-
-        MeteorY4 += meteorspeed4
-        window.blit(Meteor, (MeteorX4, MeteorY4))
-        if MeteorY4 > windowHeight:
-            MeteorX4= random.randint(0, 600)
-            MeteorY4= -300
-            meteorspeed4 = random.randint(3,5)
-
-        MeteorY5 += meteorspeed5
-        window.blit(Meteor, (MeteorX5, MeteorY5))
-        if MeteorY5 > windowHeight:
-            MeteorX5= random.randint(0, 600)
-            MeteorY5= -200
-            meteorspeed5 = random.randint(3,5)
-
-        MeteorY6 += meteorspeed6
-        window.blit(Meteor, (MeteorX6, MeteorY6))
-        if MeteorY6 > windowHeight:
-            MeteorX6= random.randint(0, 600)
-            MeteorY6= -700
-            meteorspeed6 = 6
-
-        MeteorY7 += meteorspeed7
-        window.blit(Meteor, (MeteorX7, MeteorY7))
-        if MeteorY7 > windowHeight:
-            MeteorX7= random.randint(0, 600)
-            MeteorY7= -300
-            meteorspeed7 = 6
-
-    rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
-
-    if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
-        gameover = True
-    if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
-        gameover = True
-
-
-    if RocketX < 0: #this code makes it so that the rocket cant exit the screen
-        RocketX = 0 #this checks if the rocket go to the left so it blocks it by reseting the x
-    if RocketX > windowWidth - 100:  
-        RocketX = windowWidth - 100 #this checks if the rocket goes from the right of the screen and stops it so it stays visible
-
-    if RocketY < 0:
-        RocketY = 0 #this checks if the rocket go to the top so it blocks it by reseting the x
-    if RocketY > windowHeight - 100: 
-        RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
-
-
-    ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
-    window.blit(ScorePlacement, (300, 15))
+        RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
+        RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
         
+
+        window.blit(background, (0, egg1))
+        window.blit(background2, (0, egg2))
+        window.blit(RedRocket ,(RocketX, RocketY))
+
+
+        currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
+        if currentTime - DelayMeteor > 5000:
+
+            MeteorY1 += meteorspeed1
+            window.blit(Meteor, (MeteorX1, MeteorY1))
+            if MeteorY1 > windowHeight:
+                MeteorX1= random.randint(0, 600)
+                MeteorY1= -250
+                meteorspeed1 = random.randint(3,5)
+
+            MeteorY2 += meteorspeed2
+            window.blit(Meteor, (MeteorX2, MeteorY2))
+            if MeteorY2 > windowHeight:
+                MeteorX2= random.randint(0, 600)
+                MeteorY2= -100
+                meteorspeed2 = random.randint(3,5)
+
+            MeteorY3 += meteorspeed3
+            window.blit(Meteor, (MeteorX3, MeteorY3))
+            if MeteorY3 > windowHeight:
+                MeteorX3= random.randint(0, 600)
+                MeteorY3= -400
+                meteorspeed3 = random.randint(3,5)
+
+            MeteorY4 += meteorspeed4
+            window.blit(Meteor, (MeteorX4, MeteorY4))
+            if MeteorY4 > windowHeight:
+                MeteorX4= random.randint(0, 600)
+                MeteorY4= -300
+                meteorspeed4 = random.randint(3,5)
+
+            MeteorY5 += meteorspeed5
+            window.blit(Meteor, (MeteorX5, MeteorY5))
+            if MeteorY5 > windowHeight:
+                MeteorX5= random.randint(0, 600)
+                MeteorY5= -200
+                meteorspeed5 = random.randint(3,5)
+
+            MeteorY6 += meteorspeed6
+            window.blit(Meteor, (MeteorX6, MeteorY6))
+            if MeteorY6 > windowHeight:
+                MeteorX6= random.randint(0, 600)
+                MeteorY6= -700
+                meteorspeed6 = 6
+
+            MeteorY7 += meteorspeed7
+            window.blit(Meteor, (MeteorX7, MeteorY7))
+            if MeteorY7 > windowHeight:
+                MeteorX7= random.randint(0, 600)
+                MeteorY7= -300
+                meteorspeed7 = 6
+
+        rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
+
+        if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX4, MeteorY4, 95, 95)): 
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX5, MeteorY5, 95, 95)):
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX6, MeteorY6, 95, 95)):
+            gameover = True
+        if rocketRect.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
+            gameover = True
+
+
+        if RocketX < 0: #this code makes it so that the rocket cant exit the screen
+            RocketX = 0 #this checks if the rocket go to the left so it blocks it by reseting the x
+        if RocketX > windowWidth - 100:  
+            RocketX = windowWidth - 100 #this checks if the rocket goes from the right of the screen and stops it so it stays visible
+
+        if RocketY < 0:
+            RocketY = 0 #this checks if the rocket go to the top so it blocks it by reseting the x
+        if RocketY > windowHeight - 100: 
+            RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
+
+
+        ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
+        window.blit(ScorePlacement, (300, 15))
+            
 
     if gamestate == "Double":
-            clock.tick(60)
-            key = pygame.key.get_pressed()
 
             score += 1 / 60
 
@@ -488,8 +527,8 @@ while True:
                 if Blue.colliderect(pygame.Rect(MeteorX7, MeteorY7, 95, 95)):
                     PlayerTwoLost = True
 
-                ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
-                window.blit(ScorePlacement, (300, 15))
+            ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
+            window.blit(ScorePlacement, (300, 15))
 
     #PUT YOUR GAME LOGIN HERE FOR EApy -3.13 -m pip install pygameCH GAMESTATE
    
