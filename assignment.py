@@ -230,7 +230,7 @@ while True:
     if PlayerOneLost:
         window.blit(Player1Lost, (0, 0))
         ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
-        window.blit(ShowingDaScore, (170, 260))
+        window.blit(ShowingDaScore, (175, 45))
         pygame.draw.rect(window, (0, 0, 0), Return)
         window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
@@ -246,7 +246,7 @@ while True:
     if PlayerTwoLost:
         window.blit(Player2Lost, (0, 0))
         ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
-        window.blit(ShowingDaScore, (170, 260))
+        window.blit(ShowingDaScore, (175, 45))
         pygame.draw.rect(window, (0, 0, 0), Return)
         window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
         pygame.draw.rect(window, (255, 255, 255), Return, 3)
@@ -404,13 +404,13 @@ while True:
             if RocketY3 > windowHeight - 100: 
                 RocketY3 = windowHeight - 100
 
-            if RocketX2 < 0: 
-                RocketX2 = 0 
-                if RocketX2 > windowWidth - 119:  
-                    RocketX2 = windowWidth - 119 
+            if RocketX2 < -20: 
+                RocketX2 = -20 
+            if RocketX2 > windowWidth - 119:  
+                RocketX2 = windowWidth - 119 
 
-            if RocketY2 < 0:
-                RocketY2 = 0 
+            if RocketY2 < -20:
+                RocketY2 = -20
             if RocketY2 > windowHeight - 125: 
                 RocketY2 = windowHeight - 125
 
@@ -467,26 +467,6 @@ while True:
 
                 Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
                 Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
-
-                if RocketX3 < 0: 
-                    RocketX3 = 0 
-                if RocketX3 > windowWidth - 100:  
-                    RocketX3 = windowWidth - 100 
-
-                if RocketY3 < 0:
-                    RocketY3 = 0 
-                if RocketY3 > windowHeight - 100: 
-                    RocketY3 = windowHeight - 100
-
-                if RocketX2 < 0: 
-                    RocketX2 = 0 
-                if RocketX2 > windowWidth - 100:  
-                    RocketX2 = windowWidth - 100 
-
-                if RocketY2 < 0:
-                    RocketY2 = 0 
-                if RocketY2 > windowHeight - 100: 
-                    RocketY2 = windowHeight - 100
 
 
 
