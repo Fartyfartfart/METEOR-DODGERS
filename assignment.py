@@ -174,7 +174,20 @@ while True:
         if ev.type == pygame.MOUSEBUTTONDOWN:
             
             if Single.collidepoint(ev.pos):
+                score = 0
+                gameover = False
                 gamestate = "game"
+                RocketX = 250
+                RocketY = 250
+
+                MeteorY1 = -10
+                MeteorY2 = -150
+                MeteorY3 = -200
+                MeteorY4 = -100
+                MeteorY5 = -270
+                MeteorY6 = -370
+                MeteorY7 = -470
+                DelayMeteor = pygame.time.get_ticks()
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if TutorialButton.collidepoint(ev.pos):
@@ -182,7 +195,21 @@ while True:
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
+                PlayerOneLost = False
+                PlayerTwoLost = False
                 gamestate = "Double"
+                RocketX = 250
+                RocketY = 250
+                
+                MeteorY1 = -10
+                MeteorY2 = -150
+                MeteorY3 = -200
+                MeteorY4 = -100
+                MeteorY5 = -270
+                MeteorY6 = -370
+                MeteorY7 = -470
+                DelayMeteor = pygame.time.get_ticks()
+
         
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Return.collidepoint(ev.pos):
