@@ -1,7 +1,7 @@
 '''
 -----------------------------------------------------------------------------
-Program Name: (never put your personal name or information on the Internet)
-Program Description:
+Program Name: Meteor Dodgers
+Program Description:This game is a simple game where you move ur rokcet down and attempt to beat ur own score. You can play with Freinds and Family in an attempt to beat them or team up and survive the longest. Player 1 has WASD key and Player 2 has the arrow keys
 
 -----------------------------------------------------------------------------
 References:
@@ -30,17 +30,29 @@ Program Reflection:
 I think this project deserves a level XXXXXX because ...
 
  Level 3 Requirements Met:
-• 
-•  
-•  
-•  
-•  
-• 
+
+ ***WINDOW SIZE LESS THAN 1280 (WIDE) X 720 (HIGH) PLEASE***
+***MUST GET PERMISSION FROM TEACHER TO USE CODING TECHNIQUES THAT WERE NOT TAUGHT IN VIDEOS***
+The game uses user events (keyboard and/or mouse input from the user)
+All user input is sanitized (ie, won’t crash your program)
+The program must use a variable.
+Use appropriate data types (int, String, long).
+Use conditional structures (if-statement, boolean operators).
+Use loop structures (for, while).
+Create and use custom functions.
+Encapsulate the final program to include multiple screens with a menu system to move between them. (For example: an intro screen, main screen, and end screen).
+The program should have clear instructions on how to use/play.
+The program must have a soundtrack and sounds.
+The program uses images
+Coding decisions should make sense and not include grossly inefficient code.
+The program must have collision detection
+The program must have a custom downloaded font
+
 
 Features Added Beyond Level 3 Requirements:
-• 
-•  
-•  
+• 2 Player mode with a WASD key
+• Custom background made by me for the menu
+• No bugs in the code 
 •  
 •  
 • 
