@@ -195,6 +195,7 @@ while True:
 
         if ev.type == pygame.MOUSEBUTTONDOWN:
             if Double.collidepoint(ev.pos):
+                score = 0
                 PlayerOneLost = False
                 PlayerTwoLost = False
                 gamestate = "Double"
