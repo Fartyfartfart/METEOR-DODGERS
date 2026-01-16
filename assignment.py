@@ -23,11 +23,13 @@ Known bugs:
 
 (put a list of known bugs here, if you have any)
 
+N/A
+
 ----------------------------------------------------------------------------
 
 
 Program Reflection:
-I think this project deserves a level XXXXXX because ...
+I think this project deserves a level +4 because It has met all the level 3 requirments while also going beyond having a 2 player mode, no bugs, delay for the metor, showes score for 2 player and single player, comments, and many more. Commitments were made EVERYDAY IN CLASS execpt for the half day which I wasnt here for because I went on vacation and the snowday. The Interview personally I think I did well in because I was able to explain my code from top to bottom and was able to answer the questions that you provided for me. 
 
  Level 3 Requirements Met:
 
@@ -50,12 +52,12 @@ The program must have a custom downloaded font
 
 
 Features Added Beyond Level 3 Requirements:
-• 2 Player mode with a WASD key
+• 2 Player mode with a WASD key fully working
 • Custom background made by me for the menu
 • No bugs in the code 
-•  
-•  
-• 
+• Game is neat and organized and displays ur score at the end 
+• Smooth
+• Has a delay of 5 seconds for the meteor to come when you press play both in 2 player and single player so you have time to prepaare
 -----------------------------------------------------------------------------
 '''
 
@@ -63,36 +65,35 @@ import pygame
 import random
 pygame.init()
 
-gamestate = "menu"
-gameover = False
-PlayerOneLost = False
-PlayerTwoLost = False
+gamestate = "menu" #gamestate for the menu
+gameover = False #Gameover is set to false so it dosnt show right away when it needs to 
+PlayerOneLost = False  #PlayerOneLost is set to false so it dosnt show right away when it needs to 
+PlayerTwoLost = False  #PlayerTwoLost is set to false so it dosnt show right away when it needs to 
 
 # *********SETUP**********
 
-windowWidth = 600
-windowHeight = 500
-window = pygame.display.set_mode((windowWidth, windowHeight))
-pygame.display.set_caption("Meteor Dodgers")
-ScoreFont= pygame.font.Font("PublicPixel-rv0pA.ttf", 30 )
+windowWidth = 600 #Width of the Window
+windowHeight = 500 #Height of the window
+window = pygame.display.set_mode((windowWidth, windowHeight)) #setting the window to 600 by 500
+pygame.display.set_caption("Meteor Dodgers") #showes the name of the assignment on the top left of the screen
 clock = pygame.time.Clock()  #will allow us to set framerate
 
-MeteorDelay = 0
+MeteorDelay = 0 #sets the meteor delay to 0 so that later on in the code the meteors will delay by 5 seconds
 
-ScoreFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 30)
-TitleFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 40)
-ButtonFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20)
-CreditFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20)
+ScoreFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 30) #the same font for the score for each of the different parts this is for score
+TitleFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 40) #the same font for the score for each of the different parts this is for title
+ButtonFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20) #the same font for the score for each of the different parts this is for button
+CreditFont = pygame.font.Font("PublicPixel-rv0pA.ttf", 20) #the same font for the score for each of the different parts this is for Credits (The font for TerrenceT inc)
 
-Single = pygame.Rect(200, 220, 200, 50)
+Single = pygame.Rect(200, 220, 200, 50) 
 Double = pygame.Rect(200, 290, 200, 50)
 TutorialButton = pygame.Rect(200, 360, 200, 50)
 Return = pygame.Rect(200, 420, 200, 50) 
 
-pygame.mixer.music.load('background.mp3')
+pygame.mixer.music.load('background.mp3') #background music in mind dosnt change it when I preload this in the game
 BackgroundMenu = pygame.transform.scale(
 
-    pygame.image.load("Drawing.sketchpad.png"), (600, 500))
+    pygame.image.load("Drawing.sketchpad.png"), (600, 500))  #Image for my background image keeps this in mind for me to preload this (Background was made by me)
 
 RocketX3 = 250  # starting position for double first player
 RocketY3 = 250
@@ -100,16 +101,17 @@ RocketX2 = 350  # starting position for Player 2
 RocketY2 = 250
 RocketX= 250    # starting position for single
 RocketY= 250
-score = 0
+score = 0 #score set to 0 everytime when we click play or 2 player
 
 egg1 = 0
 egg2 = -windowHeight
 speed = 2.7
 Player1ROCKETSPEED = 5
 Player2ROCKETSPEED = 5
-MeteorX1= random.randint(0, 600)
-MeteorY1= -10
-meteorspeed1 = random.randint(3,5)
+
+MeteorX1= random.randint(0, 600) #meteor spawn from the width of 0 to 600 randomly
+MeteorY1= -10 #starting valye is -10 for the meteor
+meteorspeed1 = random.randint(3,5) #speed from 3-5
 
 MeteorX2= random.randint(0, 600)
 MeteorY2= -150
@@ -135,16 +137,17 @@ MeteorX7= random.randint(0, 600)
 MeteorY7= -470
 meteorspeed7 = random.randint(3,5)
 
-Tutorial = pygame.transform.scale(pygame.image.load("Tutorial.png"), (600, 500))
-Player1Lost = pygame.transform.scale(pygame.image.load("Player1Lost.png"), (600, 500))
-Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600, 500))
-GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500))
-Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200))
-RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
-TwoRedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100))
-BlueRocket = pygame.transform.scale(pygame.image.load("a-rocket-in-pixel-art-style-vector-removebg-preview.png"), (145, 145))
-background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500))
-background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500))
+
+Tutorial = pygame.transform.scale(pygame.image.load("Tutorial.png"), (600, 500)) #this code keeps the image in mind so i can preload it later
+Player1Lost = pygame.transform.scale(pygame.image.load("Player1Lost.png"), (600, 500)) #this code keeps the image in mind so i can preload it later
+Player2Lost = pygame.transform.scale(pygame.image.load("Player2Lost.png"), (600, 500)) #this code keeps the image in mind so i can preload it later
+GameOver = pygame.transform.scale(pygame.image.load("GAME OVER.png"), (600, 500)) #this code keeps the image in mind so i can preload it later
+Meteor = pygame.transform.scale(pygame.image.load("Meteor.png"), (200, 200)) #this code keeps the image in mind so i can preload it later
+RedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100)) #this code keeps the image in mind so i can preload it later
+TwoRedRocket = pygame.transform.scale(pygame.image.load("RedRocket.png"), (100, 100)) #this code keeps the image in mind so i can preload it later
+BlueRocket = pygame.transform.scale(pygame.image.load("a-rocket-in-pixel-art-style-vector-removebg-preview.png"), (145, 145)) #this code keeps the image in mind so i can preload it later
+background = pygame.transform.scale(pygame.image.load("1.webp"),(600, 500)) #this code keeps the image in mind so i can preload it later
+background2= pygame.transform.scale(pygame.image.load("e.webp"),(600, 500)) #this code keeps the image in mind so i can preload it later
 # *********GAME LOOP**********
 while True:
     # *********EVENTS**********
@@ -158,28 +161,29 @@ while True:
     #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
    
     # *********GAME LOGIC**********
-    if gamestate == "menu":
-        window.blit(BackgroundMenu, (0,0))
+    if gamestate == "menu": #ensures the code only runs when the game is in the menu
+        window.blit(BackgroundMenu, (0,0))# the background screen is displayed
 
-        title = TitleFont.render("METEOR DODGERS", True, (255, 255, 255))
-        pygame.draw.rect(window, (0, 0, 0), (10, 70, 580, 70))
-        window.blit(title, (20, 80))
+        title = TitleFont.render("METEOR DODGERS", True, (255, 255, 255)) #title design (white) and what it says 
+        pygame.draw.rect(window, (0, 0, 0), (10, 70, 580, 70))#Black border for the title
+        window.blit(title, (20, 80)) #title is displayed 
 
-        credit = CreditFont.render("Credits: TerrenceT Inc™", True, (255, 255, 255))
+        credit = CreditFont.render("Credits: TerrenceT Inc™", True, (255, 255, 255)) #The next three code is the same as the one on top while displaying the credit 
         pygame.draw.rect(window, (0, 0, 0), (70, 155, 490, 50))
-        window.blit(credit, (80, 165))
+        window.blit(credit, (80, 165)) 
 
-        pygame.draw.rect(window, (0, 0, 0), Single)
+        pygame.draw.rect(window, (0, 0, 0), Single) #Displays the button black rectange for these three lines
         pygame.draw.rect(window, (0, 0, 0), Double)
         pygame.draw.rect(window, (0, 0, 0), TutorialButton)
 
-        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235))
-        pygame.draw.rect(window, (255, 255, 255), Single, 3)
-        DelayMeteor = pygame.time.get_ticks()
+        window.blit(ButtonFont.render("Single", True, (255, 255, 255)), (240, 235)) #displays the Buttonfont, what it says, the white color of it
+        pygame.draw.rect(window, (255, 255, 255), Single, 3) #showes the white outline around the rectange
         window.blit(ButtonFont.render("Double", True, (255, 255, 255)), (237, 305))
         pygame.draw.rect(window, (255, 255, 255), Double, 3)
         window.blit(ButtonFont.render("Tutorial", True, (255, 255, 255)), (215, 375))
         pygame.draw.rect(window, (255, 255, 255), TutorialButton, 3)
+
+        DelayMeteor = pygame.time.get_ticks()
 
 
 
@@ -402,12 +406,14 @@ while True:
             RocketY = 0 #this checks if the rocket go to the top so it blocks it by reseting the x
         if RocketY > windowHeight - 100: 
             RocketY = windowHeight - 100 #this checks if the rocket goes from the bottom of the screen and stops it so it stays visible
+            #Refrence: https://www.youtube.com/watch?v=kEEgFNz_SHU
+
 
 
         ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
         window.blit(ScorePlacement, (300, 15))
             
-
+#The rest Of this code is the same thing above exept for the 2 player movement key which I have commented on it
     if gamestate == "Double":
 
             score += 1 / 60
@@ -422,11 +428,14 @@ while True:
             
                 score += 1
                 
-            RocketY3 += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
-            RocketX3 += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
+            RocketY3 += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED #Up and down movement for the arrow keys of player 1
+            RocketX3 += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED #Left and Right movement for the arrow keys of player 1
             
-            RocketY2 += (key[pygame.K_s] - key[pygame.K_w]) * Player2ROCKETSPEED
-            RocketX2 += (key[pygame.K_d] - key[pygame.K_a]) * Player2ROCKETSPEED
+            RocketY2 += (key[pygame.K_s] - key[pygame.K_w]) * Player2ROCKETSPEED #Up and down movement for the WASD of player 2
+            RocketX2 += (key[pygame.K_d] - key[pygame.K_a]) * Player2ROCKETSPEED #Left and Right movement for the WASD of player 2
+            
+            #refrence https://www.youtube.com/watch?v=fylVGdGBKYA
+
 
 
             window.blit(background, (0, egg1))
@@ -454,8 +463,8 @@ while True:
             if RocketY2 > windowHeight - 125: 
                 RocketY2 = windowHeight - 125
 
-            currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
-            if currentTime - DelayMeteor > 5000:
+            currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code this code delays the meteor
+            if currentTime - DelayMeteor > 5000: #delays it by 5 seconds
                 MeteorY1 += meteorspeed1
                 window.blit(Meteor, (MeteorX1, MeteorY1))
                 if MeteorY1 > windowHeight:
