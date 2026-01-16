@@ -183,39 +183,39 @@ while True:
         window.blit(ButtonFont.render("Tutorial", True, (255, 255, 255)), (215, 375))
         pygame.draw.rect(window, (255, 255, 255), TutorialButton, 3)
 
-        DelayMeteor = pygame.time.get_ticks()
+        DelayMeteor = pygame.time.get_ticks() #delays the meteor
 
 
 
-        if ev.type == pygame.MOUSEBUTTONDOWN:
+        if ev.type == pygame.MOUSEBUTTONDOWN: # if the mouse is pressed down
             
-            if Single.collidepoint(ev.pos):
-                score = 0
-                gameover = False
-                gamestate = "game"
-                RocketX = 250
-                RocketY = 250
+            if Single.collidepoint(ev.pos): #if the Single player button is pressed
+                score = 0 #score set to 0
+                gameover = False #it is false so whenever I click return and replay it the screen dosnt show
+                gamestate = "game" #the gamestate is play this will make it so that later on if the game states = play it will do the stuff I want it to do in that gamestate
+                RocketX = 250 #rocket X position
+                RocketY = 250 #rocket y position
 
-                MeteorY1 = -10
-                MeteorY2 = -150
+                MeteorY1 = -10 #meteor Y position and where they spawn for these 7 lines of code at the bottom
+                MeteorY2 = -150 
                 MeteorY3 = -200
                 MeteorY4 = -100
                 MeteorY5 = -270
                 MeteorY6 = -370
                 MeteorY7 = -470
-                DelayMeteor = pygame.time.get_ticks()
+                DelayMeteor = pygame.time.get_ticks() #delays the meteor
 
-        if ev.type == pygame.MOUSEBUTTONDOWN:
+        if ev.type == pygame.MOUSEBUTTONDOWN: # if the mouse is pressed down
             if TutorialButton.collidepoint(ev.pos):
-                gamestate = "tutorial"
+                gamestate = "tutorial" #Gamestate will equal tutorial this will make it so later on I can display the tutorial image when I show the gamestate
 
-        if ev.type == pygame.MOUSEBUTTONDOWN:
-            if Double.collidepoint(ev.pos):
-                score = 0
-                PlayerOneLost = False
-                PlayerTwoLost = False
-                gamestate = "Double"
-                RocketX = 250
+        if ev.type == pygame.MOUSEBUTTONDOWN: #mouse is pressed down
+            if Double.collidepoint(ev.pos): #Same thing as the single player button and tutorial button
+                score = 0 #score will set to 0 like single player
+                PlayerOneLost = False #Like the gameover screen this will be set to false so whenever I click return and replay it the screen dosnt show
+                PlayerTwoLost = False #same with the other code
+                gamestate = "Double" #same thing with the single player gamestate
+                RocketX = 250 #the next 10 lines of code is the same thing I explained in the single player code
                 RocketY = 250
                 
                 MeteorY1 = -10
@@ -228,50 +228,50 @@ while True:
                 DelayMeteor = pygame.time.get_ticks()
 
         
-        if ev.type == pygame.MOUSEBUTTONDOWN:
+        if ev.type == pygame.MOUSEBUTTONDOWN: #if the mouse is pressed down on the button
             if Return.collidepoint(ev.pos):
-                gamestate = "Return"
+                gamestate = "Return" #Same thing with the other gamestate I showed single, tutorial, and double 
                
             
-        pygame.display.flip()
-        clock.tick(60)
-        continue
+        pygame.display.flip() #updates every frame
+        clock.tick(60) #Force frame rate to 60fps or lower
+        continue 
 
 
-    if gamestate == "tutorial":
-            window.blit(Tutorial, (0, 0))
-            pygame.draw.rect(window, (0, 0, 0), Return)
-            window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
-            pygame.draw.rect(window, (255, 255, 255), Return, 3)
+    if gamestate == "tutorial": #if the tutorial gamestate is displayed it will do all the things at the bottom
+            window.blit(Tutorial, (0, 0)) #set the position of the tutorial image
+            pygame.draw.rect(window, (0, 0, 0), Return)#showes the return button rectange
+            window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435)) #showes the return word and color (design)
+            pygame.draw.rect(window, (255, 255, 255), Return, 3) #White outline outside the box to make it look neat same thing as the white outline in the other buttons
 
-            if ev.type == pygame.MOUSEBUTTONDOWN:
-                if Return.collidepoint(ev.pos):
-                    gamestate = "menu"
-                    gameover = False
-                    PlayerOneLost = False
-                    PlayerTwoLost = False
+            if ev.type == pygame.MOUSEBUTTONDOWN: #if the button is pressed
+                if Return.collidepoint(ev.pos): #if the return button is pressed
+                    gamestate = "menu" #takes you back to the menu page
+                    gameover = False #Gameover screen wont show
+                    PlayerOneLost = False #Player 2 screen wont show
+                    PlayerTwoLost = False #Player 1 screen wont show
 
             pygame.display.flip()
             continue
                      
 
-    if gameover:
-        window.blit(GameOver, (0, 0))
-        ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
-        window.blit(ShowingDaScore, (170, 260))
-        pygame.draw.rect(window, (0, 0, 0), Return)
-        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435))
-        pygame.draw.rect(window, (255, 255, 255), Return, 3)
+    if gameover: #if its gamover 
+        window.blit(GameOver, (0, 0)) #the gameover picture will show
+        ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) #the score will show with it color, wording, and also being rounded
+        window.blit(ShowingDaScore, (170, 260)) #position of where the score will show on the meny
+        pygame.draw.rect(window, (0, 0, 0), Return) #showes the black rectangle fpr the return
+        window.blit(ButtonFont.render("Return", True, (255, 255, 255)), (240, 435)) #showes the return wording and withe color (design)
+        pygame.draw.rect(window, (255, 255, 255), Return, 3) #like the rest of the button the white outline for the return button to make it look more neat
         pygame.display.flip()
 
-        if ev.type == pygame.MOUSEBUTTONDOWN:
-                if Return.collidepoint(ev.pos):
-                    gamestate = "menu"
-                    gameover = False
+        if ev.type == pygame.MOUSEBUTTONDOWN: #if the mouse isclicked 
+                if Return.collidepoint(ev.pos): #if the return button is clicked
+                    gamestate = "menu" #takes you back to the menu
+                    gameover = False #gamover screen wont show
 
         continue
 
-    if PlayerOneLost:
+    if PlayerOneLost: #PlayerOne Game over screen is the exact same thing as the game over screen for siingle player
         window.blit(Player1Lost, (0, 0))
         ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
         window.blit(ShowingDaScore, (175, 45))
@@ -287,7 +287,7 @@ while True:
         pygame.display.flip()
         continue
 
-    if PlayerTwoLost:
+    if PlayerTwoLost: #PlayerTwo Game over screen is the exact same thing as the game over screen for siingle player
         window.blit(Player2Lost, (0, 0))
         ShowingDaScore = ScoreFont.render("Score: " + str(round(score)), True, (255, 255, 255)) 
         window.blit(ShowingDaScore, (175, 45))
@@ -306,37 +306,37 @@ while True:
     key = pygame.key.get_pressed()
     if gamestate == "game":
 
-        score += 1 / 60
+        score += 1 / 60 #score increase every second of 60 FPS
 
-        egg1 += speed
-        egg2 += speed
+        egg1 += speed  #How fast the scrolling backround falls for the first image
+        egg2 += speed #How fast the scrolling backround falls for the other image
 
-        if egg1 >= windowHeight:
+        if egg1 >= windowHeight: #resets the image once it falls down to the bottom
             egg1 = -windowHeight
-        if egg2 >= windowHeight:
+        if egg2 >= windowHeight: #resets the other image once it falls down to the bottom for the scrolling backround
             egg2 = -windowHeight
         
-            score += 1
 
-        RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED
-        RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED
+        RocketY += (key[pygame.K_DOWN] - key[pygame.K_UP]) * Player1ROCKETSPEED #Up and down movement for the arrow keys of player 1
+        RocketX += (key[pygame.K_RIGHT] - key[pygame.K_LEFT]) * Player1ROCKETSPEED #Left and Right movement for the arrow keys of player 1
         
 
-        window.blit(background, (0, egg1))
-        window.blit(background2, (0, egg2))
-        window.blit(RedRocket ,(RocketX, RocketY))
+        window.blit(background, (0, egg1)) #displays the image for the scrolling backround (the sky)
+        window.blit(background2, (0, egg2)) #displays the second image for the scrolling backround (the sky) 
+        window.blit(RedRocket ,(RocketX, RocketY)) #displays the rocket image along with its positions
 
 
         currentTime = pygame.time.get_ticks() #Saumel Helped me on this Code
         if currentTime - DelayMeteor > 5000:
 
-            MeteorY1 += meteorspeed1
-            window.blit(Meteor, (MeteorX1, MeteorY1))
+            MeteorY1 += meteorspeed1 #Moves the meteor down the screen
+            window.blit(Meteor, (MeteorX1, MeteorY1)) #displays the image along with its position
             if MeteorY1 > windowHeight:
-                MeteorX1= random.randint(0, 600)
-                MeteorY1= -250
-                meteorspeed1 = random.randint(3,5)
+                MeteorX1= random.randint(0, 600) #randomly generates the x to be between 0 to 600 from where it goes down
+                MeteorY1= -250 #How far it spawn
+                meteorspeed1 = random.randint(3,5) #randomly generates the speed
 
+            #THE REST OF THE METEORS ARE THE EXACT SAME AS I SHOWED U FROM THE FIRST THEY JUST HAVE DIFFERENT POSITION OF HOW FAR THEY SPAWN FROM AND SPEED
             MeteorY2 += meteorspeed2
             window.blit(Meteor, (MeteorX2, MeteorY2))
             if MeteorY2 > windowHeight:
@@ -379,11 +379,11 @@ while True:
                 MeteorY7= -300
                 meteorspeed7 = 6
 
-        rocketRect = pygame.Rect(RocketX, RocketY, 20, 20)
+        rocketRect = pygame.Rect(RocketX, RocketY, 20, 20) #Invisible Rectange for the Red Rocketship (The Hitbox) this is for when the meteors hit the rockets hitbox it displays a gameover
 
-        if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-            gameover = True
-        if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
+        if rocketRect.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)): #Meteors hitbox same thing as rocket
+            gameover = True #if both of them collide the gameover image will show meaning you lost
+        if rocketRect.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)): #same thing with the rest of the Meteor hitbox 
             gameover = True
         if rocketRect.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
             gameover = True
@@ -410,8 +410,8 @@ while True:
 
 
 
-        ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255))
-        window.blit(ScorePlacement, (300, 15))
+        ScorePlacement = ScoreFont.render(str(round(score)), True, (255,255,255)) #What the score says, font, white color, and rounding it to the nearest number so it doesn't have a decimal
+        window.blit(ScorePlacement, (300, 15)) #showes where the score is placed which is on the top middle of the screen
             
 #The rest Of this code is the same thing above exept for the 2 player movement key which I have commented on it
     if gamestate == "Double":
@@ -443,7 +443,7 @@ while True:
             window.blit(TwoRedRocket ,(RocketX3, RocketY3))
             window.blit(BlueRocket ,(RocketX2, RocketY2))
 
-            if RocketX3 < 0: 
+            if RocketX3 < 0:  #For Player 1
                 RocketX3 = 0 
             if RocketX3 > windowWidth - 100:  
                 RocketX3 = windowWidth - 100 
@@ -453,7 +453,7 @@ while True:
             if RocketY3 > windowHeight - 100: 
                 RocketY3 = windowHeight - 100
 
-            if RocketX2 < -20: 
+            if RocketX2 < -20: #For Player 2
                 RocketX2 = -20 
             if RocketX2 > windowWidth - 119:  
                 RocketX2 = windowWidth - 119 
@@ -514,14 +514,14 @@ while True:
                     MeteorY7= -300
                     meteorspeed7 = 6
 
-                Red = pygame.Rect(RocketX3, RocketY3, 20, 20)
-                Blue = pygame.Rect(RocketX2, RocketY2, 20, 20)
+                Red = pygame.Rect(RocketX3, RocketY3, 20, 20) #hitbox for player 1 (invisible rectangle)
+                Blue = pygame.Rect(RocketX2, RocketY2, 20, 20) #hitbox for player 1 (invisible rectangle)
 
 
 
-                if Red.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-                    PlayerOneLost = True
-                    gameover = False
+                if Red.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)): #hitbox for meteor for player 1 (invisible rectangle)
+                    PlayerOneLost = True #displays the gameover which is the Player One lost screen which is true
+                    gameover = False #DOES NOT SHOW THE GAMEOVER ONE BECAUSE I WANT IT TO SHOW WHO LOST NOT JUST A GAMEOVER
                 if Red.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
                     PlayerOneLost = True
                     gameover = False
@@ -541,8 +541,8 @@ while True:
                     PlayerOneLost = True
                     gameover = False
 
-                if Blue.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)):
-                    PlayerTwoLost = True
+                if Blue.colliderect(pygame.Rect(MeteorX1, MeteorY1, 95, 95)): #hitbox for meteor for player 2 (invisible rectangle)
+                    PlayerTwoLost = True #displays the gameover which is the Player Two lost screen which is true
                 if Blue.colliderect(pygame.Rect(MeteorX2, MeteorY2, 95, 95)):
                     PlayerTwoLost = True
                 if Blue.colliderect(pygame.Rect(MeteorX3, MeteorY3, 95, 95)): 
